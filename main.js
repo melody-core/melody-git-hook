@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env node
 
 const path = require('path');
 const fs = require('fs'); 
@@ -19,7 +19,7 @@ const runShell = (shell) => new Promise((resolve, reject)=>{
 class Main {
     init = async() => {
         try {
-            await fs.promises.mkdir(path.resolve(__dirname, '.melody'));
+            await fs.promises.mkdir('.melody');
             await this.preCommitDemo();
             await this.moveControl();
             await this.addControl();
@@ -28,7 +28,7 @@ class Main {
         }
     }
     preCommitDemo = async ()=>{
-        await fs.promises.writeFile(path.resolve(__dirname, '.melody/pre-commit'), "echo pre-commit", "utf-8")
+        await fs.promises.writeFile('.melody/pre-commit', "echo pre-commit", "utf-8")
     } 
     addControl = async () => {
         await runShell(`chmod +x .melody/pre-commit`);
@@ -45,5 +45,7 @@ class Main {
 
 
 new Main().init();
+
+module.exports = Main;
 
 

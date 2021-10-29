@@ -1,15 +1,19 @@
 {
   "name": "@melody-core/melody-git-hook",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "提供git kook的功能！",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "node ./main.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "六弦",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/melody-core/melody-git-hook.git"
+  },
+  "homepage": "https://melody-core.github.io/",
   "bin": {
-    "melody-git-hook": "main.js"
+    "melody-git-hook": "./main.js"
   }
 }
