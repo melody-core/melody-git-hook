@@ -19,10 +19,23 @@ const runShell = (shell) => new Promise((resolve, reject)=>{
 class Main {
     init = async() => {
         try {
-            await fs.promises.mkdir('.melody');
-            await this.preCommitDemo();
+            const dirs = await fs.promises.readdir('./');
+            if(dirs.indexOf('.melody')>-1){
+                console.log('已存在.melody文件夹');
+                const cuDirs = await fs.promises.readdir('.melody');
+                if(cuDirs.indexOf('pre-commit')>-1){
+                    console.log('已存在pre-commit');
+                    console.log('执行git-hook权限移交');
+                }else{
+                    await this.preCommitDemo();
+                }
+            }else{
+                await fs.promises.mkdir('.melody');
+                await this.preCommitDemo();
+            }
             await this.moveControl();
             await this.addControl();
+            console.log('melody-git-hook初始化工作已成功完成');
         } catch (error) {
             throw error;
         }
